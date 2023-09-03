@@ -8,7 +8,7 @@ try
     // файла нету => пишет; файл есть => переписывает;
     using (FileStream fileStreamForWrite = File.Create(path))
     {
-        byte[] wordsForInverse = new UTF8Encoding(true).GetBytes("маша\r\nстол\r\nземля\r\nнебо\r\nрадуга");
+        byte[] wordsForInverse = new UTF8Encoding(true).GetBytes("маша\r\nстол\r\nземля\r\nнебо\r\nрадуга\r\nБарни\r\nсолнышко\r\nФарида Сеид-заде");
 
         // Add some information to the file.
         fileStreamForWrite.Write(wordsForInverse, 0, wordsForInverse.Length);
@@ -22,7 +22,10 @@ try
             string streamTemps = "";
             while ((streamTemps = streamReaderForRead.ReadLine()) != null)
             {
-                Console.WriteLine(streamTemps.Reverse().ToArray());
+                char[] stringArray = streamTemps.ToCharArray();
+                Array.Reverse(stringArray);
+                string reversedStr = new string(stringArray);
+                Console.Write($"\n{streamTemps} => {reversedStr}");
             }
         }
     }
